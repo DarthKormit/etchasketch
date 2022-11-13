@@ -8,11 +8,21 @@
   <body draggable="false">
     <h1>Etch A Sketch</h1>
     <div>
-      
+      <button id="resize-canvas">Resize</button>
+      <button id=""></button>
+      <input
+        type="range"
+        id="canvas-size"
+        name="canvas-size"
+        min="1"
+        value="9"
+        max="64"
+      />
+      <label for="canvas-size">Size</label>
+      <p>Value: <span id="demo">9</span></p>
     </div>
     <div draggable="false" class="project-grid-position">
-      <section draggable="false" id="div-grid" class="basic-grid">
-    </section>
+      <section draggable="false" id="div-grid" class="basic-grid"></section>
     </div>
   </body>
   <script src="etch.js"></script>

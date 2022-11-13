@@ -1,29 +1,38 @@
 .project-grid-position {
   position: relative;
   top: 25%;
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  overflow: hidden;
   max-height: 75%;
 }
 
 .basic-grid {
-  padding: 2.5%;
   display: grid;
-  gap: 1rem;
-
-  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-  grid-auto-rows: 300px;
-  --stagger-delay: 100ms;
+  /* gap: 1rem; */
+  width: 500px;
+  max-width: 500px;
+  height: 500px;
+  max-height: 500px;
+  grid-template-columns: repeat(var(--columnnumber), 1fr);
+  grid-template-rows: repeat(var(--rownumber), 1fr);
+  /* grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); */
+  /* grid-template: repeat(auto, 1fr) / repeat(auto, 1fr); */
+  /* grid-auto-rows: 300px; */
+  /* --stagger-delay: 100ms; */
 }
 
 .grid-div{
-  background-color: antiquewhite;
-  transition: all 500ms;
+  display: block;
+  background-color: white;
+  /* border: 0.05px solid black; */
+  /* transition: all 100ms; */
 }
 
 
 .grid-div:hover {
-  box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em,
-    rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
-  transform: translateY(-3px) scale(1.04);
+  border: 1px solid black;
+  /* box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em,
+    rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em; */
+  /* transform: translateY(-3px) scale(1.005); */
   transition: all .5s;
 }
