@@ -4,16 +4,27 @@ const canvasSize = document.getElementById("canvas-size");
 const resizeCanvas = document.getElementById("resize-canvas");
 const clearCanvas = document.getElementById("clear-canvas");
 const colourPicker = document.getElementById("colour-picker");
+const eraserButton = document.getElementById("eraser-button");
 
 var output = document.getElementById("demo");
 canvasSize.value = 9;
-output.innerHTML = canvasSize.value;
+output.innerHTML = "Value: "+ canvasSize.value + " x " + canvasSize.value;
 
+let eraser = false;
 let isClicked = false;
 let chosenColour = "black";
 
+function chooseColour() {
+  if (eraser == true) {
+    chosenColour = "antiquewhite";
+  } else {
+    chosenColour = colourPicker.value;
+  }
+  return chosenColour;
+}
+
 canvasSize.oninput = function () {
-  output.innerHTML = this.value;
+  output.innerHTML = "Value: " + this.value + " x " + this.value;
 };
 
 function deleteChild() {
@@ -53,12 +64,12 @@ function createGridListeners() {
 function createListeners() {
   Array.from(gridDivs).forEach((element) => {
     element.addEventListener("mousedown", () => {
-      element.style.backgroundColor = chosenColour;
+      element.style.backgroundColor = chooseColour();
     });
 
     element.addEventListener("mouseenter", () => {
       if (isClicked == true) {
-        element.style.backgroundColor = chosenColour;
+        element.style.backgroundColor = chooseColour();
       }
     });
   });
@@ -68,6 +79,16 @@ function watchColorPicker(event) {
   chosenColour = event.target.value;
 }
 
+eraserButton.addEventListener("click", () => {
+  if (eraser == false) {
+    eraser = true;
+    eraserButton.style.backgroundColor = "yellow";
+  } else {
+    eraser = false;
+    eraserButton.style.backgroundColor = "gainsboro";
+  }
+  
+});
 colourPicker.addEventListener("change", watchColorPicker, false);
 clearCanvas.addEventListener("click", () => clearGridDivs());
 resizeCanvas.addEventListener("click", () => createDiv(canvasSize.value));
