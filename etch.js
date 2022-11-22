@@ -5,10 +5,12 @@ const resizeCanvas = document.getElementById("resize-canvas");
 const clearCanvas = document.getElementById("clear-canvas");
 const colourPicker = document.getElementById("colour-picker");
 const eraserButton = document.getElementById("eraser-button");
+const gridLineToggle = document.getElementById("grid-line-button");
+const currentCanvasSize = document.getElementById("current-canvas-size");
 
-var output = document.getElementById("demo");
+var resizeValue = document.getElementById("resize-value");
 canvasSize.value = 9;
-output.innerHTML = "Value: "+ canvasSize.value + " x " + canvasSize.value;
+resizeValue.innerHTML = "Value: " + canvasSize.value + " x " + canvasSize.value;
 
 let eraser = false;
 let isClicked = false;
@@ -16,7 +18,7 @@ let chosenColour = "black";
 
 function chooseColour() {
   if (eraser == true) {
-    chosenColour = "antiquewhite";
+    chosenColour = "white";
   } else {
     chosenColour = colourPicker.value;
   }
@@ -24,7 +26,7 @@ function chooseColour() {
 }
 
 canvasSize.oninput = function () {
-  output.innerHTML = "Value: " + this.value + " x " + this.value;
+  resizeValue.innerHTML = "Value: " + this.value + " x " + this.value;
 };
 
 function deleteChild() {
@@ -35,7 +37,7 @@ function deleteChild() {
 
 function clearGridDivs() {
   Array.from(gridDivs).forEach((element) => {
-    element.style.backgroundColor = "antiquewhite";
+    element.style.backgroundColor = "white";
   });
 }
 
@@ -82,16 +84,38 @@ function watchColorPicker(event) {
 eraserButton.addEventListener("click", () => {
   if (eraser == false) {
     eraser = true;
-    eraserButton.style.backgroundColor = "yellow";
+    eraserButton.style.backgroundColor = "#24B413";
   } else {
     eraser = false;
-    eraserButton.style.backgroundColor = "gainsboro";
+    eraserButton.style.backgroundColor = "#1374B4";
   }
-  
 });
+
+gridLineToggle.addEventListener("click", () => {
+  if (gridLineToggle.value == "true") {
+    gridLineToggle.value = "false";
+    gridLineToggle.style.backgroundColor = "#24B413";
+    Array.from(gridDivs).forEach((element) => {
+      element.style.borderStyle = "hidden";
+    });
+  } else {
+    gridLineToggle.value = "true";
+    gridLineToggle.style.backgroundColor = "#1374B4";
+    Array.from(gridDivs).forEach((element) => {
+      element.style.borderStyle = "solid";
+    });
+  }
+});
+
 colourPicker.addEventListener("change", watchColorPicker, false);
 clearCanvas.addEventListener("click", () => clearGridDivs());
-resizeCanvas.addEventListener("click", () => createDiv(canvasSize.value));
+resizeCanvas.addEventListener("click", () => {
+  createDiv(canvasSize.value);
+  currentCanvasSize.innerHTML =
+    "Current Size: " + canvasSize.value + " x " + canvasSize.value;
+  gridLineToggle.value = "true";
+  gridLineToggle.style.backgroundColor = "#1374B4";
+});
 
 createGridListeners();
 createDiv(9);

@@ -7,7 +7,9 @@
   </head>
   <body draggable="false">
     <h1>Etch A Sketch</h1>
-    <label for="canvas-size" class="control-button">Size</label>
+    <label id="current-canvas-size" for="canvas-size"
+      >Current Size: 9 x 9</label
+    >
     <div draggable="false" class="control-panel">
       <div class="color-selector">
         <p class="control-text">
@@ -19,6 +21,12 @@
         <button id="eraser-button" class="control-button">Eraser Toggle</button>
       </div>
       <div>
+        <button id="grid-line-button" class="control-button" value="true">
+          Grid-Lines Toggle
+        </button>
+      </div>
+      <div><button id="clear-canvas" class="control-button">Clear</button></div>
+      <div>
         <input
           type="range"
           id="canvas-size"
@@ -27,17 +35,16 @@
           value="9"
           max="64"
         />
-        <p id="demo" class="control-text">Value: 9</p>
+        <p id="resize-value" class="control-text">Value: 9</p>
+        <div>
+          <button id="resize-canvas" class="control-button">Resize</button>
+        </div>
       </div>
-      <div>
-        <button id="resize-canvas" class="control-button">Resize</button>
-      </div>
-      <div><button id="clear-canvas" class="control-button">Clear</button></div>
-      <div>
+      <!-- <div>
         <button class="control-button">Export Image</button>
-      </div>
+      </div> -->
     </div>
-    
+
     <div draggable="false" class="project-grid-position">
       <section draggable="false" id="div-grid" class="basic-grid"></section>
     </div>
