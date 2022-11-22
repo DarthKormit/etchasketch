@@ -46,10 +46,6 @@ body{
   padding: 0.2rem;
 }
 
-#colour-picker{
-  border: 3px solid black;
-}
-
 .control-button {
   background-color: #1374B4;
   border-radius: 5px;
